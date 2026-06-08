@@ -1,4 +1,5 @@
 using EmergencySystem.API;
+using EmergencySystem.API.Middlewares;
 using EmergencySystem.Application;
 using EmergencySystem.Infrastructure;
 
@@ -23,6 +24,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<TransactionMiddleware>();
 
 app.UseHttpsRedirection();
 
