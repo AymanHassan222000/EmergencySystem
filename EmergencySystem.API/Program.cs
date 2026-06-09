@@ -25,6 +25,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<GlobalErrorHandlerMiddelware>();
+
 app.UseMiddleware<TransactionMiddleware>();
 
 app.UseHttpsRedirection();
