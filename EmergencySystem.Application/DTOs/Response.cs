@@ -1,4 +1,6 @@
-﻿namespace EmergencySystem.Application.DTOs;
+﻿using EmergencySystem.Domain.Enums;
+
+namespace EmergencySystem.Application.DTOs;
 
 public class Response<T>
 {
