@@ -2,7 +2,9 @@
 
 public enum UserRole
 {
-    Admin,
+    Admin = 1,
     Citizen,
-    Responder
+    Dispatcher,
+    Responder,
+    HospitalStaff,
 }
