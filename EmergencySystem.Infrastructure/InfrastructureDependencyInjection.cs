@@ -2,6 +2,7 @@
 using EmergencySystem.Infrastructure.Authentication;
 using EmergencySystem.Infrastructure.Context;
 using EmergencySystem.Infrastructure.Repositories;
+using EmergencySystem.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,8 +25,10 @@ public static class InfrastructureDependencyInjection
                    .LogTo(log => Console.WriteLine(log), LogLevel.Information);
         });
 
-        //General Repository Registration
+        // Repository Registration
         services.AddScoped(typeof(IGeneralRepository<>), typeof(GeneralRepository<>));
+
+        services.AddScoped<IUserRepository, UserRepository>();
 
         //JWT Configurations Registration
         services.Configure<JwtSettings>(configuration.GetSection("JWT"));
@@ -53,7 +56,8 @@ public static class InfrastructureDependencyInjection
             };
         });
 
-
+        // Hashing Service Registraton
+        services.AddScoped<IHashingService, HashingService>();
 
 
         return services;

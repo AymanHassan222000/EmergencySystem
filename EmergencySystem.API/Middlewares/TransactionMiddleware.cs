@@ -6,9 +6,11 @@ namespace EmergencySystem.API.Middlewares;
 public class TransactionMiddleware : IMiddleware
 {
     private readonly EmergencySystemDbContext _context;
-    public TransactionMiddleware(EmergencySystemDbContext context)
+    private readonly ILogger<TransactionMiddleware> _logger;
+    public TransactionMiddleware(EmergencySystemDbContext context, ILogger<TransactionMiddleware> logger)
     {
         _context = context;
+        _logger = logger;
     }
 
 
@@ -25,6 +27,14 @@ public class TransactionMiddleware : IMiddleware
         catch (Exception ex) 
         {
             await transaction.RollbackAsync();
+
+            _logger.LogError(
+               ex,
+               "Transaction rolled back for {Method} {Path}",
+               context.Request.Method,
+               context.Request.Path
+            );
+
             throw;
         }
     }

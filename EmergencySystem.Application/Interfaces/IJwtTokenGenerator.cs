@@ -1,8 +1,9 @@
-﻿using EmergencySystem.Domain.Entities;
+﻿using EmergencySystem.Application.DTOs.Authentication;
+using EmergencySystem.Domain.Entities;
 
 namespace EmergencySystem.Application.Interfaces;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateTokenAsync(User user);
+    GenerateTokenResult GenerateTokenAsync(User user);
 }

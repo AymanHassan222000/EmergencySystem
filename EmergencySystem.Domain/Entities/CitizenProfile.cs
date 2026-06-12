@@ -11,6 +11,7 @@ public class CitizenProfile : BaseEntity
     public required string PhoneNumber { get; set; }
     public double DefaultLatitude { get; set; }
     public double DefaultLongitude { get; set; }
+    public bool IsMale { get; set; }
     public Guid UserId { get; set; }
     public User? User { get; set; } 
 }

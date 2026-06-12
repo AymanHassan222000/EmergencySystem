@@ -2,6 +2,7 @@ using EmergencySystem.API;
 using EmergencySystem.API.Middlewares;
 using EmergencySystem.Application;
 using EmergencySystem.Infrastructure;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,24 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPresentation(builder.Configuration)
                 .AddInfrastructure(builder.Configuration)
                 .AddApplication(builder.Configuration);
+
+builder.Services.AddScoped<TransactionMiddleware>();
+
+// Serilog Registration
+builder.Logging.ClearProviders();
+
+Serilog.Log.Logger = new Serilog.LoggerConfiguration()
+       .Enrich.WithEnvironmentName()
+       .Enrich.WithMachineName()
+       .WriteTo.Seq(builder.Configuration["Seq:ServerUrl"])
+       .WriteTo.MSSqlServer(
+           connectionString: builder.Configuration.GetConnectionString("DefaultConnection"),
+           sinkOptions: new Serilog.Sinks.MSSqlServer.MSSqlServerSinkOptions { TableName = "Logs", AutoCreateSqlTable = true },
+           restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information
+       ) 
+       .CreateLogger();
+
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 

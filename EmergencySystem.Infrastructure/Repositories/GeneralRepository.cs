@@ -10,7 +10,7 @@ namespace EmergencySystem.Infrastructure.Repositories;
 public class GeneralRepository<T> : IGeneralRepository<T> where T : BaseEntity
 {
     private readonly EmergencySystemDbContext _context;
-    private readonly DbSet<T> _dbSet;
+    protected readonly DbSet<T> _dbSet;
     public GeneralRepository(EmergencySystemDbContext context)
     {
         _context = context;    
