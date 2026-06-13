@@ -26,12 +26,21 @@ public sealed class HospitalsController : ControllerBase
         return response;
     }
 
+    [HttpGet]
+    public async Task<Response<IEnumerable<GetAllHospitalsDto>>> GetAllHospitals()
+    {
+        var response = await _mediator.Send(new GetAllHospitalsQuery());
+
+        return response;
+    }
+
+
     [HttpGet("{id}")]
     public async Task<Response<GetHospitalByIdResponseDto>> GetHospitalById(Guid id) 
     {
-        var hospital = await _mediator.Send(new GetHospitalByIdQuery(id));
+        var response = await _mediator.Send(new GetHospitalByIdQuery(id));
 
-        return hospital;
+        return response;
     }
 
 }
