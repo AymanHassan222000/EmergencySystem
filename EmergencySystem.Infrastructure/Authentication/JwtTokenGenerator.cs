@@ -17,7 +17,7 @@ public sealed class JwtTokenGenerator : IJwtTokenGenerator
         _jwtSettings = options.Value;
     }
 
-    public GenerateTokenResult GenerateTokenAsync(User user)
+    public GenerateTokenResult GenerateToken(User user)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
         var tokenHandler = new JwtSecurityTokenHandler();

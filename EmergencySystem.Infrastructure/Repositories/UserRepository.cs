@@ -12,4 +12,8 @@ public class UserRepository : GeneralRepository<User>, IUserRepository
     public async Task<bool> EmailExists(string email, CancellationToken ct) => await _dbSet.AnyAsync(x => x.Email == email, ct);
 
     public async Task<bool> UserNameExists(string userName, CancellationToken ct) => await _dbSet.AnyAsync(x => x.UserName == userName, ct);
+
+    public async Task<User?> GetByEmailAsync(string email, CancellationToken ct) => await _dbSet.FirstOrDefaultAsync(x => x.Email == email, ct);
+
+    public async Task<User?> GetByUserNameAsync(string userName, CancellationToken ct) => await _dbSet.FirstOrDefaultAsync(x => x.UserName == userName, ct);
 }

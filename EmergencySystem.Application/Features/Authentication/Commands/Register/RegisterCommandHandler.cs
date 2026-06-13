@@ -34,9 +34,9 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Response<
         user.PasswordHash = _hashingService.Hash(request.Password);
 
         await _userRepo.AddAsync(user);
-        //await _userRepo.SaveChangesAsync();
+        await _userRepo.SaveChangesAsync();
 
-        var result = _jwtTokenGenerator.GenerateTokenAsync(user);
+        var result = _jwtTokenGenerator.GenerateToken(user);
 
         var registerResponseDto = new RegisterResponseDto(
             result.Token,

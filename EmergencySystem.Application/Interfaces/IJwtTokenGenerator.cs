@@ -5,5 +5,5 @@ namespace EmergencySystem.Application.Interfaces;
 
 public interface IJwtTokenGenerator
 {
-    GenerateTokenResult GenerateTokenAsync(User user);
+    GenerateTokenResult GenerateToken(User user);
 }

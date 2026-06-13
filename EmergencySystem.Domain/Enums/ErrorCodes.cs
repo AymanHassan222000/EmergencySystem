@@ -4,6 +4,7 @@ public enum ErrorCodes
 {
     NoError,
     ValidationErrors,
+    Unauthorized,
 
     // User
     EmailIsExistBefore = 100,
