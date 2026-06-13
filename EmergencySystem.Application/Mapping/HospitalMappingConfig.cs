@@ -2,23 +2,22 @@
 using EmergencySystem.Domain.Entities;
 using Mapster;
 
-namespace EmergencySystem.Application.Mapping
+namespace EmergencySystem.Application.Mapping;
+
+public class HospitalMappingConfig : IRegister
 {
-    public class HospitalMappingConfig : IRegister
+    public void Register(TypeAdapterConfig config)
     {
-        public void Register(TypeAdapterConfig config)
-        {
-            config.NewConfig<AddHospitalCommand, Hospital>()
-                .Map(
-                    dest => dest.ResourceAvailability,
-                    src => new ResourceAvailability
-                    {
-                        TotalBeds = src.TotalBeds,
-                        AvailableBeds = src.AvailableBeds,
-                        EmergencyCapacity = src.EmergencyCapacity,
-                        AvailableEmergencyCapacity = src.AvailableEmergencyCapacity,
-                    }
-                );
-        }
+        config.NewConfig<AddHospitalCommand, Hospital>()
+            .Map(
+                dest => dest.ResourceAvailability,
+                src => new ResourceAvailability
+                {
+                    TotalBeds = src.TotalBeds,
+                    AvailableBeds = src.AvailableBeds,
+                    EmergencyCapacity = src.EmergencyCapacity,
+                    AvailableEmergencyCapacity = src.AvailableEmergencyCapacity,
+                }
+            );
     }
 }

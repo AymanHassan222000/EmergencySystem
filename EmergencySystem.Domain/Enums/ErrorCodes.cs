@@ -9,4 +9,7 @@ public enum ErrorCodes
     // User
     EmailIsExistBefore = 100,
     UserNameIsExistBefore = 101,
+
+    // Hospital
+    HospitalNotExist = 200,
 }

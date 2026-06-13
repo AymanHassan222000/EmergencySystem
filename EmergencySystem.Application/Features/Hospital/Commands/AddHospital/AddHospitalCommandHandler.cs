@@ -7,9 +7,9 @@ namespace EmergencySystem.Application.Features.Hospital.Commands.AddHospital;
 
 public sealed class AddHospitalCommandHandler : IRequestHandler<AddHospitalCommand, Response<bool>>
 {
-    private readonly IHospitalRepository _hospitalRepo;
+    private readonly IGeneralRepository<Domain.Entities.Hospital> _hospitalRepo;
 
-    public AddHospitalCommandHandler(IHospitalRepository hospitalRepo)
+    public AddHospitalCommandHandler(IGeneralRepository<Domain.Entities.Hospital> hospitalRepo)
     {
         _hospitalRepo = hospitalRepo;
     }
