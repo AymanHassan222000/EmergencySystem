@@ -27,8 +27,8 @@ public static class InfrastructureDependencyInjection
 
         // Repository Registration
         services.AddScoped(typeof(IGeneralRepository<>), typeof(GeneralRepository<>));
-
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IHospitalRepository, HospitalRepository>();
 
         //JWT Configurations Registration
         services.Configure<JwtSettings>(configuration.GetSection("JWT"));

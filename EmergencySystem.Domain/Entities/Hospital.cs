@@ -13,7 +13,6 @@ public class Hospital : BaseEntity
     public double Longitude { get; set; }
     public required HospitalStatus Status { get; set; }
     public bool IsGovernmental { get; set; }
-    public Guid ResourceId { get; set; }
     public ResourceAvailability ResourceAvailability { get; set; } 
     public ICollection<TransferRequest> TransferRequests { get; set; } = new HashSet<TransferRequest>();
 }

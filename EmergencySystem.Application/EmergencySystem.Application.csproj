@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="DTOs\Hospital\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
 
   <ItemGroup>
